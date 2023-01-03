@@ -1,8 +1,10 @@
 package com.pablo.pic2;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -26,5 +28,11 @@ Button button1;
                 startActivityForResult(open_camera, 100);
             }
         });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        Bitmap photo = (Bitmap) data.getExtras().get("data");
+        imageView1.setImageBitmap(photo);
     }
 }
